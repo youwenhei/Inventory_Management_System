@@ -42,3 +42,8 @@ int Product::getID() const
 {
 	return product_ID;
 }
+
+std::string Product::getBarcode() const
+{
+	return product_Barcode;
+}

@@ -9,9 +9,13 @@ class Inventory
 {
 private:
 	std::vector<Product> products; // Vector to store the list for products dynamically
+	int newProductID; // Initialize the product ID counter
 
 public:
+	Inventory();
+	void addProduct(); //function overloading
 	void addProduct(const Product& product);
+
 	void displayProducts() const;
 };
 

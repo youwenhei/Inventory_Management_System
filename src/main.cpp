@@ -2,8 +2,22 @@
 #include "Product.h"
 #include <iostream>
 #include <windows.h>
+#include <cstdlib>
+#include <limits>
 
 using namespace std;
+
+void clearScreen()
+{
+	system("cls");
+}
+
+void pauseScreen()
+{
+	cout << "Press Enter to continue...";
+	cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
+	cin.get();
+}
 
 void displayMenu()
 {
@@ -39,27 +53,43 @@ int main()
 		int option;
 		cin >> option;
 
+		cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
+
 		switch (option)
 		{
 		case 1: // add product
-			std::cin.ignore();
+			clearScreen();
 			inventory.addProduct();
+			pauseScreen();
+			clearScreen();
 			break;
 
 		case 2: //display products
+			clearScreen();
 			inventory.displayProducts();
+			pauseScreen();
+			clearScreen();
 			break;
 
 		case 3: //search product
+			clearScreen();
 			inventory.searchProduct();
+			pauseScreen();
+			clearScreen();
 			break;
 
 		case 4: //update product
-			
+			clearScreen();
+
+			pauseScreen();
+			clearScreen();
 			break;
 
 		case 5: //delete product
-			
+			clearScreen();
+
+			pauseScreen();
+			clearScreen();
 			break;
 
 		case 6:
@@ -75,22 +105,6 @@ int main()
 			break;
 		}
 	}
-	
-	/*
-	//Sample product data
-	Product product1(
-		1,
-		123456789,
-		"I LOVE MEE",
-		"With flavoring powder and seasoning oil",
-		"Instant Noodles",
-		50,
-		4.90,
-		"My Company",
-		"2026-12-31",
-		"2025-01-01"
-	);
-	*/
 
 	return 0;
 }

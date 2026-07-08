@@ -23,6 +23,39 @@ bool isValidDate(const std::string& date)
 		if (i == 4 || i == 7) continue;
 		if (!isdigit(date[i])) return false;
 	}
+
+	return true;
+}
+
+//barcode validation function
+bool isValidBarcode(const std::string& barcode)
+{
+	if (barcode.length() != 9)
+	{
+		return false;
+	}
+
+	for (char c : barcode)
+	{
+		if (!isdigit(c))
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+//quantity validation function
+bool isValidQuantity(int quantity)
+{
+	return quantity >= 0;
+}
+
+//price validation function
+bool isValidPrice(double price)
+{
+	return price >= 0.0;
 }
 
 void Inventory::addProduct()
@@ -32,8 +65,24 @@ void Inventory::addProduct()
 	std::string barcode, name, description, category, supplier, expiryDate, manufactureDate;
 
 	std::cout << "\n===============================Add Product===============================\n";
-	std::cout << "Enter Product Barcode: ";
-	std::getline(std::cin, barcode);
+	do
+	{
+		std::cout << "Enter Product Barcode (9 digits): ";
+		std::getline(std::cin, barcode);
+
+		if (!isValidBarcode(barcode))
+		{
+			std::cout << "The barcode format is invalid. Please re-enter the barcode with 9 digits." << std::endl;
+			std::cout << "Thank you for your understanding." << std::endl;
+		}
+
+		else if (isBarcodeExist(barcode))
+		{
+			std::cout << "The barcode is already in use. Please enter a unique barcode." << std::endl;
+			std::cout << "Thank you for your understanding." << std::endl;
+		}
+
+	} while (!isValidBarcode(barcode) || isBarcodeExist(barcode));
 
 	std::cout << "Enter Product Name: ";
 	std::getline(std::cin, name);
@@ -44,11 +93,29 @@ void Inventory::addProduct()
 	std::cout << "Enter Product Category: ";
 	std::getline(std::cin, category);
 
-	std::cout << "Enter Product Quantity: ";
-	std::cin >> quantity;
+	do
+	{
+		std::cout << "Enter Product Quantity: ";
+		std::cin >> quantity;
 
-	std::cout << "Enter Product Price: RM ";
-	std::cin >> price;
+		if (!isValidQuantity(quantity))
+		{
+			std::cout << "The quantity format is invalid. Please re-enter the quantity with a non-negative integer." << std::endl;
+			std::cout << "Thank you for your understanding." << std::endl;
+		}
+	} while (!isValidQuantity(quantity));
+
+	do
+	{
+		std::cout << "Enter Product Price: RM ";
+		std::cin >> price;
+
+		if (!isValidPrice(price))
+		{
+			std::cout << "The price format is invalid. Please re-enter the price with a non-negative number." << std::endl;
+			std::cout << "Thank you for your understanding." << std::endl;
+		}
+	} while (!isValidPrice(price));
 
 	std::cin.ignore();
 
@@ -99,6 +166,18 @@ void Inventory::addProduct()
 	std::cout << "Product is added successfully!\n";
 }
 
+bool Inventory::isBarcodeExist(const std::string& barcode) const
+{
+	for (const auto& product : products)
+	{
+		if (product.getBarcode() == barcode)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Inventory::addProduct(const Product& product) 
 {
 	products.push_back(product); //to add the product to the vector 
@@ -107,8 +186,14 @@ void Inventory::addProduct(const Product& product)
 
 void Inventory::displayProducts() const 
 {
-	//take each product in the vector and display it
-	for (const auto& product : products) {
+	if (products.empty())
+	{
+		std::cout << "No products available in the inventory. Please try again!" << std::endl;
+		return;
+	}
+
+	for (const auto& product : products)
+	{
 		product.display();
 	}
 }

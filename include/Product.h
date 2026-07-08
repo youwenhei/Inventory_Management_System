@@ -8,20 +8,29 @@
 class Product
 {
 private: //cannot be edited
-  int proID;
-  string proName;
-  int proQuantity;
-  double proPrice;
+	//product attributes
+  int product_ID;
+  int product_Barcode;
+  string product_Name;
+  string product_Description;
+  string product_Category;
+
+	//product stock and price
+  int product_Quantity;
+  double product_Price;
+
+	//product supplier and dates
+  string product_Supplier;
+  string product_ExpiryDate;
+  string product_ManufactureDate;
+
 
 public: //product creation
-  Product(int proID, string proName, int proQuantity, double proPrice);
+	Product(int product_ID, int product_Barcode, string product_Name, string product_Description, string product_Category, 
+			int product_Quantity, double product_Price, 
+			string product_Supplier, string product_ExpiryDate, string product_ManufactureDate);
 
   //system function
   void display();
-
-  int getID();
-  string getName();
-  int getQuantity();
-  double getPrice();
 
 #endif

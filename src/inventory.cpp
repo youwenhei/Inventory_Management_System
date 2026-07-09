@@ -95,6 +95,24 @@ bool isValidPrice(double price)
 	return price >= 0.0;
 }
 
+//supplier validation function
+bool isValidSupplier(const std::string& supplier)
+{
+	if (supplier.empty())
+	{
+		return false;
+	}
+
+	for (char c : supplier)
+	{
+		if (!std::isalnum(c) && c != ' ' && c != '&' && c != '-')
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 void Inventory::addProduct()
 {
 	int quantity;
@@ -175,8 +193,18 @@ void Inventory::addProduct()
 
 	std::cin.ignore();
 
-	std::cout << "Enter Product Supplier: ";
-	std::getline(std::cin, supplier);
+	while (true)
+	{
+		std::cout << "Enter Product Supplier: ";
+		std::getline(std::cin, supplier);
+		if (!isValidSupplier(supplier))
+		{
+			std::cout << "The supplier format is invalid. Please re-enter the supplier name with only letters, numbers, and spaces." << std::endl;
+			std::cout << "Thank you for your understanding." << std::endl;
+			continue;
+		}
+		break;
+	}
 
 	do
 	{
@@ -284,14 +312,14 @@ void Inventory::searchProduct() const
 {
 	int option;
 	std::cout << "=======================================================================\n";
-	std::cout << "Search Product by:\n";
+	std::cout << "Search Product Menu:\n";
 	std::cout << "=======================================================================\n";
 	std::cout << "1. Search by Product ID" << std::endl;
 	std::cout << "2. Search by Product Barcode" << std::endl;
 	std::cout << "3. Search by Product Name" << std::endl;
 	std::cout << "4. Search by Product Category" << std::endl;
-	std::cout << "5. Search by Product Supplier" << std::endl;
-	std::cout << "6. Search by Product Price Range" << std::endl;
+	std::cout << "5. Search by Product Price Range" << std::endl;
+	std::cout << "6. Search by Product Supplier" << std::endl;
 	std::cout << "7. Return to Main Menu" << std::endl;
 	std::cout << "8. Exit" << std::endl;
 	std::cout << "=======================================================================\n";
@@ -320,183 +348,318 @@ void Inventory::searchProduct() const
 
 	switch (option)
 	{
-		case 1:
+	case 1:
+	{
+		bool found = false;
+		int id;
+
+		std::cout << "Please enter Product ID to search: ";
+		std::cin >> id;
+
+		for (const auto& product : products)
 		{
-			bool found = false;
-			int id;
-
-			std::cout << "Please enter Product ID to search: ";
-			std::cin >> id;
-
-			for (const auto& product : products)
+			if (product.getID() == id)
 			{
-				if (product.getID() == id)
-				{
-					product.display();
-					found = true;
-					break;
-				}
-			}
-
-			if (!found)
-			{
-				std::cout << "Sorry! The product with ID " << id << " is not found.Please try again!" << std::endl;
-			}
-			break;
-		}
-
-		case 2:
-		{
-			bool found = false;
-			std::string barcode;
-
-			std::cout << "Please enter Product Barcode to search: ";
-			std::cin >> barcode;
-
-			for (const auto& product : products)
-			{
-				if (product.getBarcode() == barcode)
-				{
-					product.display();
-					found = true;
-					break;
-				}
-			}
-
-			if (!found)
-			{
-				std::cout << "Sorry! The product with Barcode " << barcode << " is not found.Please try again!" << std::endl;
-			}
-			break;
-		}
-
-		case 3:
-		{
-			bool found = false;
-			std::string name;
-			
-			std::cout << "Please enter Product Name to search: ";
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::getline(std::cin, name);
-			
-			for (const auto& product : products)
-			{
-				if (toLowerCase(product.getName()).find(toLowerCase(name))
-					!= std::string::npos)
-				{
-					product.display();
-					found = true;
-				}
-			}
-			
-			if (!found)
-			{
-				std::cout << "Sorry! The product with Name " << name << " is not found.Please try again!" << std::endl;
-			}
-			break;
-		}
-
-		case 4:
-		{
-			bool found = false;
-			std::string category;
-			
-			std::cout << "Please enter Product Category to search: ";
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::getline(std::cin, category);
-			
-			for (const auto& product : products)
-			{
-				if (toLowerCase(product.getCategory()).find(toLowerCase(category))
-					!= std::string::npos)
-				{
-					product.display();
-					found = true;
-				}
-			}
-			
-			if (!found)
-			{
-				std::cout << "Sorry! The product with Category " << category << " is not found.Please try again!" << std::endl;
-			}
-			break;
-		}
-
-		case 5:
-		{
-			bool found = false;
-			std::string supplier;
-			
-			std::cout << "Please enter Product Supplier to search: ";
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::getline(std::cin, supplier);
-			
-			for (const auto& product : products)
-			{
-				if (toLowerCase(product.getSupplier()).find(toLowerCase(supplier))
-					!= std::string::npos)
-				{
-					product.display();
-					found = true;
-				}
-			}
-			
-			if (!found)
-			{
-				std::cout << "Sorry! The product with Supplier " << supplier << " is not found.Please try again!" << std::endl;
-			}
-			break;
-		}
-
-		case 6:
-		{
-			bool found = false;
-			double minPrice, maxPrice;
-		
-			std::cout << "Please enter minimum price: RM ";
-			std::cin >> minPrice;
-		
-			std::cout << "Please enter maximum price: RM ";
-			std::cin >> maxPrice;
-		
-			if (minPrice > maxPrice)
-			{
-				std::cout << "The minimum price cannot be greater than the maximum price. Please try again!" << std::endl;
+				product.display();
+				found = true;
 				break;
 			}
-
-			for (const auto& product : products)
-			{
-				if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice)
-				{
-					product.display();
-					found = true;
-				}
-			}
-		
-			if (!found)
-			{
-				std::cout << "Sorry! No products found in the price range RM " << minPrice << " - RM " << maxPrice << ". Please try again!" << std::endl;
-			}
-			break;
 		}
 
-		case 7:
+		if (!found)
 		{
-			std::cout << "You are now returning to main menu..." << std::endl;
-			break;
+			std::cout << "Sorry! The product with ID " << id << " is not found.Please try again!" << std::endl;
 		}
-
-		case 8:
-		{
-			std::cout << "You are exiting the program. Thank you for using the Inventory Management System!" << std::endl;
-			std::cout << "Goodbye! Wish you have a happy day!" << std::endl;
-			exit(0);
-		}
-
-		default:
-		{
-			std::cout << "This is an invalid option. Please try again!" << std::endl;
-			break;
-		}
+		break;
 	}
+
+	case 2:
+	{
+		bool found = false;
+		std::string barcode;
+
+		std::cout << "Please enter Product Barcode to search: ";
+		std::cin >> barcode;
+
+		for (const auto& product : products)
+		{
+			if (product.getBarcode() == barcode)
+			{
+				product.display();
+				found = true;
+				break;
+			}
+		}
+
+		if (!found)
+		{
+			std::cout << "Sorry! The product with Barcode " << barcode << " is not found.Please try again!" << std::endl;
+		}
+		break;
+	}
+
+	case 3:
+	{
+		bool found = false;
+		std::string name;
+
+		std::cout << "Please enter Product Name to search: ";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::getline(std::cin, name);
+
+		for (const auto& product : products)
+		{
+			if (toLowerCase(product.getName()).find(toLowerCase(name))
+				!= std::string::npos)
+			{
+				product.display();
+				found = true;
+			}
+		}
+
+		if (!found)
+		{
+			std::cout << "Sorry! The product with Name " << name << " is not found.Please try again!" << std::endl;
+		}
+		break;
+	}
+
+	case 4:
+	{
+		bool found = false;
+		std::string category;
+
+		std::cout << "Please enter Product Category to search: ";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::getline(std::cin, category);
+
+		for (const auto& product : products)
+		{
+			if (toLowerCase(product.getCategory()).find(toLowerCase(category))
+				!= std::string::npos)
+			{
+				product.display();
+				found = true;
+			}
+		}
+
+		if (!found)
+		{
+			std::cout << "Sorry! The product with Category " << category << " is not found.Please try again!" << std::endl;
+		}
+		break;
+	}
+
+	case 5:
+	{
+		bool found = false;
+		double minPrice, maxPrice;
+
+		std::cout << "Please enter minimum price: RM ";
+		std::cin >> minPrice;
+
+		std::cout << "Please enter maximum price: RM ";
+		std::cin >> maxPrice;
+
+		if (minPrice > maxPrice)
+		{
+			std::cout << "The minimum price cannot be greater than the maximum price. Please try again!" << std::endl;
+			break;
+		}
+
+		for (const auto& product : products)
+		{
+			if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice)
+			{
+				product.display();
+				found = true;
+			}
+		}
+
+		if (!found)
+		{
+			std::cout << "Sorry! No products found in the price range RM " << minPrice << " - RM " << maxPrice << ". Please try again!" << std::endl;
+		}
+		break;
+	}
+
+	case 6:
+	{
+		bool found = false;
+		std::string supplier;
+
+		std::cout << "Please enter Product Supplier to search: ";
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::getline(std::cin, supplier);
+
+		for (const auto& product : products)
+		{
+			if (toLowerCase(product.getSupplier()).find(toLowerCase(supplier))
+				!= std::string::npos)
+			{
+				product.display();
+				found = true;
+			}
+		}
+
+		if (!found)
+		{
+			std::cout << "Sorry! The product with Supplier " << supplier << " is not found.Please try again!" << std::endl;
+		}
+		break;
+	}
+
+	case 7:
+	{
+		std::cout << "You are now returning to main menu..." << std::endl;
+		break;
+	}
+
+	case 8:
+	{
+		std::cout << "You are exiting the program. Thank you for using the Inventory Management System!" << std::endl;
+		std::cout << "Goodbye! Wish you have a happy day!" << std::endl;
+		exit(0);
+	}
+
+	default:
+	{
+		std::cout << "This is an invalid option. Please try again!" << std::endl;
+		break;
+	}
+	}
+}
+
+void Inventory::sortProducts()
+{
+	if (products.empty())
+	{
+		std::cout << "No products available in the inventory. Please try again!" << std::endl;
+		std::cout << "Thank you for your understanding." << std::endl;
+		return;
+	}
+
+	int option;
+	std::cout << "=======================================================================\n";
+	std::cout << "Sort Products	Menu\n";
+	std::cout << "=======================================================================\n";
+	std::cout << "1. Sort by Product ID" << std::endl;
+	std::cout << "2. Sort by Product Name" << std::endl;
+	std::cout << "3. Sort by Category" << std::endl;
+	std::cout << "4. Sort by Quantity" << std::endl;
+	std::cout << "5. Sort by Price" << std::endl;
+	std::cout << "6. Sort by Expiry Date" << std::endl;
+	std::cout << "7. Return to Main Menu" << std::endl;
+	std::cout << "8. Exit" << std::endl;
+	std::cout << "=======================================================================\n";
+	std::cout << "Please select an option: ";
+	std::cin >> option;
+	if (option < 1 || option > 8)
+	{
+		std::cout << "This is an invalid option. Please try again!" << std::endl;
+		std::cout << "Thank you for your understanding." << std::endl;
+		return;
+	}
+
+	if (option == 7)
+	{
+		std::cout << "You are now returning to main menu..." << std::endl;
+		return;
+	}
+
+	int order;
+	std::cout << "Please select the order (1 for Ascending, 2 for Descending): ";
+	std::cin >> order;
+	bool ascending = (order == 1);
+
+	switch (option)
+	{
+	case 1:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return a.getID() < b.getID();
+				else
+					return a.getID() > b.getID();
+			});
+		break;
+	}
+
+	case 2:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return toLowerCase(a.getName()) < toLowerCase(b.getName());
+				else
+					return toLowerCase(a.getName()) > toLowerCase(b.getName());
+			});
+		break;
+	}
+
+	case 3:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return toLowerCase(a.getCategory()) < toLowerCase(b.getCategory());
+				else
+					return toLowerCase(a.getCategory()) > toLowerCase(b.getCategory());
+			});
+		break;
+	}
+
+	case 4:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return a.getQuantity() < b.getQuantity();
+				else
+					return a.getQuantity() > b.getQuantity();
+			});
+		break;
+	}
+
+	case 5:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return a.getPrice() < b.getPrice();
+				else
+					return a.getPrice() > b.getPrice();
+			});
+		break;
+	}
+
+	case 6:
+	{
+		std::sort(products.begin(), products.end(), [ascending](const Product& a, const Product& b)
+			{
+				if (ascending)
+					return a.getExpiryDate() < b.getExpiryDate();
+				else
+					return a.getExpiryDate() > b.getExpiryDate();
+			});
+		break;
+	}
+
+	case 7:
+		std::cout << "You are now returning to main menu..." << std::endl;
+		return;
+
+	case 8:
+		std::cout << "You are exiting the program. Thank you for using the Inventory Management System!" << std::endl;
+		std::cout << "Goodbye! Wish you have a happy day!" << std::endl;
+		exit(0);
+
+	default:
+		std::cout << "This is an invalid option. Please try again!" << std::endl;
+		std::cout << "Thank you for your understanding." << std::endl;
+		return;
+	}
+	std::cout << "Congrats! The products sorted successfully!" << std::endl;
+	displayProducts();
+}

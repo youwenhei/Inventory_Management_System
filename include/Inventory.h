@@ -19,6 +19,10 @@ public:
 	void displayProducts() const;
 	void searchProduct() const;
 
+	void sortByPriceAscending();
+	void sortByPriceDescending();
+	void sortByExpiryDate();
+
 	bool isBarcodeExist(const std::string& barcode) const;
 };
 

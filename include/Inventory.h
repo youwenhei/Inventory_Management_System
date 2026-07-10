@@ -31,7 +31,11 @@ public:
 	void sortByExpiryDate() const;
 
 	bool isBarcodeExist(const std::string& barcode) const;
+	bool hasProducts() const;
+	int getMenuOption(int min, int max);
 };
+
+#endif
 
 #endif
 

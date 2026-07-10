@@ -43,3 +43,8 @@ public: //product creation
 };
 
 #endif
+	std::string getSupplier() const;
+	double getInventoryValue() const;
+};
+
+#endif

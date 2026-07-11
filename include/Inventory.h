@@ -23,10 +23,12 @@ public:
 	void displayProducts() const;
 
 	void searchProduct() const;
-	void searchProductByID() const;
-	void searchProductByBarcode() const;
-	void searchProductByName() const;
-	void searchProductByCategory() const;
+	void displaySearchMenu() const;
+	void exitProgram() const;
+	void searchByID() const;
+	void searchByBarcode() const;
+	void searchByName() const;
+	void searchByCategory() const;
 	void searchBySupplier() const;
 	void searchByPriceRange() const;
 

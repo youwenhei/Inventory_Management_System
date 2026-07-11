@@ -12,6 +12,11 @@ private:
 
 public:
 	Inventory();
+
+	bool isBarcodeExist(const std::string& barcode) const;
+	bool hasProducts() const;
+	int getMenuOption(int min, int max) const;
+
 	void addProduct(); //function overloading
 	void addProduct(const Product& product);
 
@@ -34,9 +39,8 @@ public:
 
 	void deleteProduct();
 
-	bool isBarcodeExist(const std::string& barcode) const;
-	bool hasProducts() const;
-	int getMenuOption(int min, int max) const;
+	void checkProductStatus();
+	static const int LOW_STOCK_THRESHOLD = 10;
 };
 
 #endif

@@ -30,6 +30,9 @@ public:
 	void sortByPriceDescending() const;
 	void sortByExpiryDate() const;
 
+	void updateProduct();
+	void updateBarcode();
+
 	bool isBarcodeExist(const std::string& barcode) const;
 	bool hasProducts() const;
 	int getMenuOption(int min, int max) const;

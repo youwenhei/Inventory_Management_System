@@ -66,10 +66,7 @@ int main()
 			break;
 
 		case 5: //update product
-			clearScreen();
-
-			pauseScreen("Press Enter to return...");
-			clearScreen();
+			inventory.updateProduct();
 			break;
 
 		case 6: //delete product
@@ -93,9 +90,4 @@ int main()
 			return 0;
 		}
 	}
-}
-		}
-	}
-
-	return 0;
 }

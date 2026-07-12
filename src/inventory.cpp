@@ -323,10 +323,11 @@ void Inventory::addProduct()
 
 		if (!isValidName(name))
 		{
-			std::cout << "The Product Name format is invalid. Please re-enter the Product Supplier name." << std::endl;
+			std::cout << "The Product Name format is invalid. Please re-enter the Product Name." << std::endl;
 			std::cout << "Thank you for your understanding." << std::endl;
 			continue;
 		}	
+		break;
 	}
 
 	//description vaidation
@@ -352,10 +353,11 @@ void Inventory::addProduct()
 
 		if (!isValidCategory(category))
 		{
-			std::cout << "The Product Category is invalid. Please re-enter the Product Supplier name." << std::endl;
+			std::cout << "The Product Category is invalid. Please re-enter the Product Category." << std::endl;
 			std::cout << "Thank you for your understanding." << std::endl;
 			continue;
 		}
+		break;
 	}
 
 	//quantity validation

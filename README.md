@@ -1,4 +1,4 @@
-# IoT-Enabled Inventory Management System
+# IoT-Enabled Smart Inventory Management System with RFID, Database, and FPGA-Based Stock Monitoring
 
 ## Description
 A C++ OOP-based inventory management system designed for product management and future IoT integration.
@@ -20,8 +20,10 @@ A C++ OOP-based inventory management system designed for product management and 
 
 ## Future Improvements
 - MySQL database integration
-- ESP32 IoT monitoring
-- Web dashboard
+- ESP32-based product identification
+- RFID integration using MFRC522
+- Wireless inventory synchronization
+- Real-time stock monitoring dashboard
 
 ## Screenshots
 ### Main Menu

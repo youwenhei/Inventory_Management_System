@@ -4,10 +4,14 @@
 A C++ OOP-based inventory management system designed for product management and future IoT integration.
 
 ## Features
+- Input validation
 - Add product
 - Display product
 - Search product
-- Input validation
+- Sort product
+- Update product
+- Delete product
+- Check product status
 
 ## Technologies
 - C++
@@ -20,15 +24,19 @@ A C++ OOP-based inventory management system designed for product management and 
 - Web dashboard
 
 ## Screenshots
-
 ### Main Menu
 ![Main Menu](screenshots/main_menu.png)
-
 ### Add Product
 ![Add Product](screenshots/add_product.png)
-
+### Display Products
+![Display Products](screenshots/display_products.png)
 ### Search Product
 ![Search Product](screenshots/search_product.png)
-
-### Sort Product
-![Sort Product](screenshots/sort_product.png)
+### Sort Products
+![Sort Products](screenshots/sort_products.png)
+### Update Product
+![Update Product](screenshots/update_product.png)
+### Delete Product
+![Delete Product](screenshots/delete_product.png)
+### Check Product Status
+![Check Product Status](screenshots/check_product_status.png)

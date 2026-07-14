@@ -1,6 +1,7 @@
 #include "Utility.h"
 #include <iostream>
 #include <cstdlib>
+#include <limits>
 
 void clearScreen()
 {
@@ -32,4 +33,11 @@ int getMenuOption(int min, int max)
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
+}
+
+void displayTitle(const std::string& title)
+{
+	std::cout << "=======================================================================\n";
+	std::cout << title << std::endl;
+	std::cout << "=======================================================================\n";
 }

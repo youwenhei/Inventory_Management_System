@@ -1,22 +1,36 @@
 # IoT-Enabled Smart Inventory Management System with RFID, Database, and FPGA-Based Stock Monitoring
 
 ## Description
-A C++ OOP-based inventory management system designed for product management and future IoT integration.
+A C++ based inventory management application developed using Object-Oriented Programming principles. The system provides product management functions with data persistence and prepares future integration with IoT devices for real-time inventory monitoring.
 
 ## Features
-- Input validation
-- Add product
-- Display product
-- Search product
-- Sort product
-- Update product
-- Delete product
-- Check product status
+✔ Add Product
+✔ Display Product
+✔ Search Product
+   - Search by ID
+   - Search by Barcode
+   - Search by Name
+   - Search by Category
+   - Search by Price Range
+   - Search by Supplier
+✔ Update Product Information
+✔ Delete Product
+✔ Sort Products
+✔ Product Status Monitoring
+✔ Data Storage using TXT File
+✔ RFID UID Support
 
 ## Technologies
-- C++
-- Object-Oriented Programming
-- Visual Studio
+1. Language:
+    - C++
+2. Concepts:
+    - Object-Oriented Programming
+    - File Handling
+    - Data Validation
+    - STL (vector, algorithm)
+3. Tools:
+    - Visual Studio
+    - Git/GitHub
 
 ## Future Improvements
 - MySQL database integration

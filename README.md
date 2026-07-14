@@ -25,7 +25,7 @@ A C++ OOP-based inventory management system designed for product management and 
 - Wireless inventory synchronization
 - Real-time stock monitoring dashboard
 
-## Screenshots
+## Screenshots （C++)
 ### Main Menu
 ![Main Menu](screenshots/main_menu.png)
 ### Add Product
@@ -42,3 +42,17 @@ A C++ OOP-based inventory management system designed for product management and 
 ![Delete Product](screenshots/delete_product.png)
 ### Check Product Status
 ![Check Product Status](screenshots/check_product_status.png)
+
+## Version History
+### v1.0.0
+- Product Management
+- Search, Sort and Update
+- Input Validation
+- File-based Storage (.txt)
+### v2.0.0 (In Progress)
+- SQLite Integration
+- Database CRUD Operations
+### v3.0.0 (Planned)
+- ESP32 + RFID Integration
+### v4.0.0 (Planned)
+- FPGA-Based Low-Stock Alert

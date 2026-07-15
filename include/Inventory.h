@@ -4,12 +4,15 @@
 #include <vector>
 #include<string>
 #include "Product.h"
+#include "Database.h"
 
 class Inventory
 {
 private:
 	std::vector<Product> products; // Vector to store the list for products dynamically
 	int newProductID; // Initialize the product ID counter
+
+	Database db;
 
 public:
 	Inventory();

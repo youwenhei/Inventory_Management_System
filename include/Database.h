@@ -11,5 +11,5 @@ public:
 	Database();
 	~Database();
 
-	sql::Connection* getConnection();
+	sql::Connection* getConnection() const;
 };

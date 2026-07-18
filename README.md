@@ -92,7 +92,7 @@ The system provides complete product management functionalities with MySQL datab
 
 # Screenshots
 
-## Version 1.0.0 - C++ Inventory Management System
+## Version 1.0 - C++ Inventory Management System
 
 ### Main Menu
 ![Main Menu](screenshots/main_menu.png)
@@ -121,7 +121,7 @@ The system provides complete product management functionalities with MySQL datab
 
 ---
 
-# Version 2.0.0 - MySQL Database Integration & Smart Dashboard
+# Version 2.0 - MySQL Database Integration & Smart Dashboard
 
 ### Database Connection
 ![Database Connection](screenshots/database_connection.png)
@@ -145,7 +145,7 @@ The system provides complete product management functionalities with MySQL datab
 
 # Version History
 
-## v1.0.0
+## v1.0
 Initial C++ Inventory Management System.
 
 Implemented:
@@ -157,7 +157,7 @@ Implemented:
 
 ---
 
-## v2.0.0
+## v2.0
 MySQL Database Integration and Smart Inventory Dashboard.
 
 Implemented:
@@ -171,7 +171,7 @@ Implemented:
 
 ---
 
-## v3.0.0 (Planned)
+## v3.0 (Planned)
 IoT Hardware Integration.
 
 Planned:
@@ -182,7 +182,7 @@ Planned:
 
 ---
 
-## v4.0.0 (Planned)
+## v4.0 (Planned)
 FPGA-Based Smart Stock Monitoring.
 
 Planned:

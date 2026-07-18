@@ -1,4 +1,4 @@
-# IoT-Enabled Smart Inventory Management System with RFID and Database Integration
+# Smart Inventory Management System with RFID Support and Database Integration
 
 Project Progress: Still on Progress
 

@@ -2313,7 +2313,7 @@ bool Inventory::exportCSV() const
 	}
 
 	file << "ID," << "Barcode," << "RFID," << "Name," << "Category,"
-		<< "Description," << "Quantity," << "Price," << "Supplier"
+		<< "Description," << "Quantity," << "Price," << "Supplier,"
 		<< "Expiry Date," << "Manufacture Date\n";
 
 	for (const auto& product : products)
@@ -2344,25 +2344,49 @@ bool Inventory::exportTXT() const
 		return false;
 	}
 
-	file << "ID," << "Barcode," << "RFID," << "Name," << "Category,"
-		<< "Description," << "Quantity," << "Price," << "Supplier"
-		<< "Expiry Date," << "Manufacture Date\n";
+	displayTitle("Smart Inventory Report");
 
 	for (const auto& product : products)
 	{
-		file << product.getID() << ","
-			<< product.getBarcode() << ","
-			<< product.getRFID() << ","
-			<< product.getName() << ","
-			<< product.getCategory() << ","
-			<< product.getDescription() << ","
-			<< product.getQuantity() << ","
-			<< product.getPrice() << ","
-			<< product.getSupplier() << ","
-			<< product.getExpiryDate() << ","
-			<< product.getManufactureDate() << ","
-			<< '\n';
+		file << "Product ID       : " << product.getID() << "\n";
+		file << "Barcode          : " << product.getBarcode() << "\n";
+		file << "RFID UID         : ";
+
+		if (product.getRFID().empty())
+			file << "Not Assigned\n";
+		else
+			file << product.getRFID() << "\n";
+
+		file << "Product Name     : " << product.getName() << "\n";
+		file << "Description      : " << product.getDescription() << "\n";
+		file << "Category         : " << product.getCategory() << "\n";
+		file << "Quantity         : " << product.getQuantity() << "\n";
+		file << "Price            : RM "
+			<< std::fixed << std::setprecision(2)
+			<< product.getPrice() << "\n";
+
+		file << "Supplier         : " << product.getSupplier() << "\n";
+
+		file << "Expiry Date      : ";
+
+		if (product.getExpiryDate().empty())
+			file << "N/A\n";
+		else
+			file << product.getExpiryDate() << "\n";
+
+
+		file << "Manufacture Date : ";
+
+		if (product.getManufactureDate().empty())
+			file << "N/A\n";
+		else
+			file << product.getManufactureDate() << "\n";
+
+
+		file << "--------------------------------------------\n\n";
 	}
+
+	displayTitle("End of Inventory Report");
 
 	return true;
 }

@@ -255,6 +255,7 @@ Advanced Features:
 -MQTT communication
 -Automatic database update
 -Dashboard auto refresh
+-Configuration Management: Externalized hardware and database parameters using configuration file.
 
 ---
 

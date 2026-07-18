@@ -166,17 +166,44 @@ The system provides complete product management functionalities with MySQL datab
 ![CSV Report](screenshots/v2.0/csv_export.png)
 ![TXT Report](screenshots/v2.0/txt_report.png)
 
+
+---
+
+
 # Version 3.0 - RFID and IoT Device Integration
 
-### RFID Scanner
+## Main Menu with RFID Scanning Function
+![Main Menu](screenshots/v3.0/main_menu_with_rfid.png)
 
-![RFID Scanner](screenshots/v3.0/rfid_scanner.png)
+## System Dashboard
 
-### IoT Device Status Monitoring
+## Before
+![Dashboard](screenshots/v3.0/dashboard_before_scanning_rfid.png)
 
-![Device Status](screenshots/v3.0/device_status_dashboard.png)
+## After
+![Dashboard](screenshots/v3.0/dashboard_for_hardware_connection.png)
+
+
+## RFID Identification
+
+![RFID Scanner](screenshots/v3.0/wait_for_rfid_scanning.png)
+![RFID Scanner](screenshots/v3.0/after_rfid_scanning.png)
+![RFID Scanner](screenshots/v3.0/product_found_after_scanning.png)
+
+
+## Database Integration
+
+![MySQL](screenshots/v3.0/mysql_rfid.png)
+
+
+---
+
 
 # Version 3.5 - Real-Time RFID Inventory Monitoring
+
+
+---
+
 
 # Version 4.0 - FPGA-Based Low Stock Alert
 

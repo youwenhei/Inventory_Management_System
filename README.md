@@ -232,7 +232,7 @@ MySQL Database
 
 ## Hardware Prototype
 
-![RFID Hardware](screenshots/v3.0/hardware/rfid_connection.jpg)
+![RFID Hardware](screenshots/v3.0/hardware/hardware_connection.jpg)
 
 
 ---
